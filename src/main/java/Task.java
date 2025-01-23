@@ -1,5 +1,5 @@
 public class Task {
-    private String task;
+    private final String task;
     private boolean isDone;
 
     public Task(String s, boolean b) {
@@ -20,9 +20,17 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getTask() {
+        return this.task;
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
     @Override
     public String toString() {
-        return isDone
+        return this.isDone
                 ? "[X] " + this.task
                 : "[ ] " + this.task;
     }
