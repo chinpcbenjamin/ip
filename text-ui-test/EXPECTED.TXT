@@ -112,5 +112,25 @@ Here are the tasks in your list:
 3. [E] [ ] talk (from: 5 to: 3)
 ___________________________________________________________________
 ___________________________________________________________________
+ERROR! You do not have that many items in your list!
+Your formatting of 'delete' is right, but please enter a valid integer
+Remember, that the integer should not exceed the number of items you have listed
+___________________________________________________________________
+___________________________________________________________________
+ERROR! You do not have that many items in your list!
+Your formatting of 'delete' is right, but please enter a valid integer
+Remember, that the integer should not exceed the number of items you have listed
+___________________________________________________________________
+___________________________________________________________________
+Noted. I've removed this task:
+  [D] [ ] homework (by: 5pm)
+Now you have 2 tasks in the list.
+___________________________________________________________________
+___________________________________________________________________
+Here are the tasks in your list:
+1. [T] [ ] tennis
+2. [E] [ ] talk (from: 5 to: 3)
+___________________________________________________________________
+___________________________________________________________________
 Bye. Hope to see you again soon!
 ___________________________________________________________________

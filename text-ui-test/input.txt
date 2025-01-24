@@ -20,4 +20,8 @@ event talk /from 5
 event talk /to 5 /by 3
 event talk /from 5 /to 3
 list
+delete
+delete 5
+delete 2
+list
 bye

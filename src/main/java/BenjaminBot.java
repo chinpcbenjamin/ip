@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BenjaminBot {
+    public enum TaskActionType {
+        ADD,
+        REMOVE
+    }
     public static void printDivider() {
         System.out.println("___________________________________________________________________");
     }
@@ -14,8 +18,15 @@ public class BenjaminBot {
 
     }
 
-    public static void addTaskPrint(Task t, int size) {
-        System.out.println("Got it. I've added this task:");
+    public static void taskPrint(Task t, int size, TaskActionType act) {
+        switch (act) {
+            case ADD:
+                System.out.println("Got it. I've added this task:");
+                break;
+            case REMOVE:
+                System.out.println("Noted. I've removed this task:");
+                break;
+        }
         System.out.println("  " + t);
         System.out.println("Now you have " + size + " tasks in the list.");
     }
@@ -60,7 +71,7 @@ public class BenjaminBot {
         try {
             Task t = new Todo(s.substring(5));
             arr.add(t);
-            addTaskPrint(t, arr.size());
+            taskPrint(t, arr.size(), TaskActionType.ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! You need to specify a todo! The correct format is: todo 'description'");
             System.out.println("For example, 'todo read book' enters a new todo called 'read book'");
@@ -72,7 +83,7 @@ public class BenjaminBot {
             int slashIndex = s.indexOf("/by");
             Task t = new Deadline(s.substring(9, slashIndex - 1), s.substring(slashIndex + 4));
             arr.add(t);
-            addTaskPrint(t, arr.size());
+            taskPrint(t, arr.size(), TaskActionType.ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! Your formatting of your 'deadline' is wrong! You do not have a '/by'!");
             System.out.println("The correct format is: deadline 'description' /by 'time'");
@@ -88,12 +99,28 @@ public class BenjaminBot {
                     s.substring(slashIndex + 6, slashIndexTwo - 1),
                     s.substring(slashIndexTwo + 4));
             arr.add(t);
-            addTaskPrint(t, arr.size());
+            taskPrint(t, arr.size(), TaskActionType.ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! Your formatting of your 'event' is wrong!");
             System.out.println("You need both a '/from' and a '/to'");
             System.out.println("The correct format is: event 'description' /from 'time' /to 'time'");
             System.out.println("For example, 'event project meeting /from Mon 2pm /to 4pm' is a valid entry");
+        }
+    }
+
+    public static void handleDelete(String s, ArrayList<Task> arr) {
+        try {
+            int count = Integer.parseInt(s.substring(7)) - 1;
+            Task t = arr.remove(count);
+            taskPrint(t, arr.size(), TaskActionType.REMOVE);
+        } catch (NumberFormatException e) {
+            System.out.println("ERROR! Your formatting of 'delete' is wrong! The correct format is: delete 'integer'");
+            System.out.println("For example, 'delete 5' removes the 5th item in the list.");
+            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("ERROR! You do not have that many items in your list!");
+            System.out.println("Your formatting of 'delete' is right, but please enter a valid integer");
+            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
         }
     }
 
@@ -121,7 +148,11 @@ public class BenjaminBot {
                 handleDeadline(s, taskArr);
             } else if (s.startsWith("event")) {
                 handleEvent(s, taskArr);
-            } else {
+            } else if (s.startsWith("delete")) {
+                handleDelete(s, taskArr);
+            }
+
+            else {
                 System.out.println("Hey! I do not understand that. Please try something else!");
             }
             printDivider();
