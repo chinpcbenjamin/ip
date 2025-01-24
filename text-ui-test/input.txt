@@ -1,0 +1,23 @@
+mark 1
+unmark 1
+todo
+todo tennis
+mark 1
+unmark 1
+list
+deadline
+deadline homework
+deadline homework /to 5pm
+deadline homework /from 5pm
+deadline homework /by 5pm
+mark 2
+list
+unmark 2
+list
+event
+event talk
+event talk /from 5
+event talk /to 5 /by 3
+event talk /from 5 /to 3
+list
+bye
