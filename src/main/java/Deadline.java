@@ -17,4 +17,9 @@ public class Deadline extends Task {
                 ? "[D] [X] " + super.getTask() + " (by: " + this.endTime + ")"
                 : "[D] [ ] " + super.getTask() + " (by: " + this.endTime + ")";
     }
+
+    @Override
+    public String saveAsString() {
+        return String.format("D,%d,%s,%s", super.getIsDone() ? 1 : 0, super.getTask(), this.endTime);
+    }
 }

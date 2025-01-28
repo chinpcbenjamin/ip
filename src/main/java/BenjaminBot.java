@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -194,6 +197,16 @@ public class BenjaminBot {
             printDivider();
             s = sc.nextLine();
             printDivider();
+        }
+
+        try {
+            FileWriter writer = new FileWriter(savedTasks);
+            for (Task task : taskArr) {
+                writer.write(task.saveAsString() + System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error: failed to save your tasks! " + e.getMessage());
         }
 
         System.out.println("Bye. Hope to see you again soon!");

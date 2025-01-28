@@ -20,4 +20,9 @@ public class Event extends Task {
                 ? "[E] [X] " + super.getTask() + " (from: " + this.startTime + " to: " + this.endTime + ")"
                 : "[E] [ ] " + super.getTask() + " (from: " + this.startTime + " to: " + this.endTime + ")";
     }
+
+    @Override
+    public String saveAsString() {
+        return String.format("E,%d,%s,%s,%s", super.getIsDone() ? 1 : 0, super.getTask(), this.startTime, this.endTime);
+    }
 }
