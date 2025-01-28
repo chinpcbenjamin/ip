@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -108,6 +112,20 @@ public class BenjaminBot {
         }
     }
 
+    public static void loadSavedTasks(String s, ArrayList<Task> arr) {
+        String[] stringArray = s.split(",");
+        switch (stringArray[0]) {
+        case "T":
+            arr.add(new Todo(stringArray[2], stringArray[1].equals("1")));
+            break;
+        case "D":
+            arr.add(new Deadline(stringArray[2], stringArray[1].equals("1"), stringArray[3]));
+            break;
+        case "E":
+            arr.add(new Event(stringArray[2], stringArray[1].equals("1"), stringArray[3], stringArray[4]));
+        }
+    }
+
     public static void handleDelete(String s, ArrayList<Task> arr) {
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
@@ -127,6 +145,27 @@ public class BenjaminBot {
     public static void main(String[] args) {
         ArrayList<Task> taskArr = new ArrayList<>(100);
         welcomeMessage();
+
+        File savedTasks = new File("./data/benjamin.txt");
+        if (!savedTasks.exists()) {
+            try {
+                new File("./data/").mkdirs();
+                savedTasks.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Sorry, error getting file storage ! " + e.getMessage());
+                return;
+            }
+        }
+
+        try {
+            Scanner reader = new Scanner(savedTasks);
+            while (reader.hasNext()) {
+                loadSavedTasks(reader.nextLine(), taskArr);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry, issue reading file " + e.getMessage());
+            return;
+        }
 
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
@@ -158,6 +197,16 @@ public class BenjaminBot {
             printDivider();
             s = sc.nextLine();
             printDivider();
+        }
+
+        try {
+            FileWriter writer = new FileWriter(savedTasks);
+            for (Task task : taskArr) {
+                writer.write(task.saveAsString() + System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error: failed to save your tasks! " + e.getMessage());
         }
 
         System.out.println("Bye. Hope to see you again soon!");
