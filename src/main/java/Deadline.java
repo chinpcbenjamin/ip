@@ -1,12 +1,15 @@
-public class Deadline extends Task {
-    private final String endTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String task, boolean isDone, String endTime) {
+public class Deadline extends Task {
+    private final LocalDateTime endTime;
+
+    public Deadline(String task, boolean isDone, LocalDateTime endTime) {
         super(task, isDone);
         this.endTime = endTime;
     }
 
-    public Deadline(String task, String endTime) {
+    public Deadline(String task, LocalDateTime endTime) {
         super(task);
         this.endTime = endTime;
     }
@@ -14,8 +17,8 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return super.getIsDone()
-                ? "[D] [X] " + super.getTask() + " (by: " + this.endTime + ")"
-                : "[D] [ ] " + super.getTask() + " (by: " + this.endTime + ")";
+                ? "[D] [X] " + super.getTask() + " (by: " + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")"
+                : "[D] [ ] " + super.getTask() + " (by: " + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")";
     }
 
     @Override

@@ -1,3 +1,5 @@
 T,0,eat
 T,1,sleep
 T,0,cs2103t homework
+D,0,cs2103t individual project,2025-01-31T16:00
+E,1,CS2103T Lecture,2025-01-31T16:00,2025-01-31T18:00

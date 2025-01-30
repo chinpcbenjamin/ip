@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -85,13 +87,16 @@ public class BenjaminBot {
     public static void handleDeadline(String s, ArrayList<Task> arr) {
         try {
             int slashIndex = s.indexOf("/by");
-            Task t = new Deadline(s.substring(9, slashIndex - 1), s.substring(slashIndex + 4));
+            Task t = new Deadline(s.substring(9, slashIndex - 1), LocalDateTime.parse(s.substring(slashIndex + 4)));
             arr.add(t);
             taskPrint(t, arr.size(), TaskActionType.ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! Your formatting of your 'deadline' is wrong! You do not have a '/by'!");
-            System.out.println("The correct format is: deadline 'description' /by 'time'");
-            System.out.println("For example, 'deadline return book /by Sunday' is a valid entry");
+            System.out.println("The correct format is: deadline 'description' /by 'YYYY-MM-DDTHH:MM:SS");
+        } catch (DateTimeParseException e) {
+            System.out.println("ERROR! Your time is not formatted correctly!");
+            System.out.println("The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'");
+            System.out.println("The correct format is: deadline 'description' /by 'YYYY-MM-DDTHH:MM:SS'");
         }
     }
 
@@ -100,15 +105,18 @@ public class BenjaminBot {
             int slashIndex = s.indexOf("/from");
             int slashIndexTwo = s.indexOf("/to", slashIndex + 1);
             Task t = new Event(s.substring(6, slashIndex - 1),
-                    s.substring(slashIndex + 6, slashIndexTwo - 1),
-                    s.substring(slashIndexTwo + 4));
+                    LocalDateTime.parse(s.substring(slashIndex + 6, slashIndexTwo - 1)),
+                    LocalDateTime.parse(s.substring(slashIndexTwo + 4)));
             arr.add(t);
             taskPrint(t, arr.size(), TaskActionType.ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! Your formatting of your 'event' is wrong!");
             System.out.println("You need both a '/from' and a '/to'");
-            System.out.println("The correct format is: event 'description' /from 'time' /to 'time'");
-            System.out.println("For example, 'event project meeting /from Mon 2pm /to 4pm' is a valid entry");
+            System.out.println("The correct format is: event 'description' /from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
+        } catch (DateTimeParseException e) {
+            System.out.println("ERROR! Your time is not formatted correctly!");
+            System.out.println("The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'");
+            System.out.println("The correct format is: event 'description' /from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
         }
     }
 
@@ -119,10 +127,10 @@ public class BenjaminBot {
             arr.add(new Todo(stringArray[2], stringArray[1].equals("1")));
             break;
         case "D":
-            arr.add(new Deadline(stringArray[2], stringArray[1].equals("1"), stringArray[3]));
+            arr.add(new Deadline(stringArray[2], stringArray[1].equals("1"), LocalDateTime.parse(stringArray[3])));
             break;
         case "E":
-            arr.add(new Event(stringArray[2], stringArray[1].equals("1"), stringArray[3], stringArray[4]));
+            arr.add(new Event(stringArray[2], stringArray[1].equals("1"), LocalDateTime.parse(stringArray[3]), LocalDateTime.parse(stringArray[4])));
         }
     }
 
