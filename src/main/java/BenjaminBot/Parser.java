@@ -1,3 +1,5 @@
+package BenjaminBot;
+
 public class Parser {
     public void parse(String s, Ui ui, TaskList taskArr, BenjaminBot benjaminBot) {
         if (s.equals("list")) {

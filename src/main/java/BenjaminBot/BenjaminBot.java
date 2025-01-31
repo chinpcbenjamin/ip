@@ -1,3 +1,5 @@
+package BenjaminBot;
+
 import java.util.Scanner;
 
 public class BenjaminBot {
