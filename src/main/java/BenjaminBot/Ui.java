@@ -2,6 +2,7 @@ package BenjaminBot;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public class Ui {
     public void printDivider() {
@@ -140,7 +141,20 @@ public class Ui {
         System.out.println("Hey! I do not understand that. Please try something else!");
     }
 
+    /**
+     * Prints out all tasks that contain the string keyword.
+     * @param s String containing the keyword to be searched for.
+     * @param arr TaskList containing the tasks.
+     */
     public void handleFind(String s, TaskList arr) {
-
+        ArrayList<Task> list = arr.findTasksContainingKeyword(s.substring(5));
+        if (list.isEmpty()) {
+            System.out.println("Sorry! I couldn't find any task containing that keyword");
+        } else {
+            System.out.println("Here ate the matching tasks in your list:");
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println(i + 1 + ". " + list.get(i));
+            }
+        }
     }
 }

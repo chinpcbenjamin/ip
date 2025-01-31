@@ -30,6 +30,15 @@ public abstract class Task {
         return this.isDone;
     }
 
+    /**
+     * Returns a boolean indicating whether this task's description contains the keyword being searched for.
+     * @param s The keyword to search for.
+     * @return A boolean indicating whether this task's description contains the keyword being searched for.
+     */
+    public boolean containsKeyword(String s) {
+        return this.task.contains(s);
+    }
+
     @Override
     public String toString() {
         return this.isDone
