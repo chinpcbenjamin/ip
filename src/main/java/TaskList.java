@@ -31,16 +31,4 @@ public class TaskList {
     public int getTaskCount() {
         return taskArr.size();
     }
-
-    public void writeToStorage(File file) {
-        try {
-            FileWriter writer = new FileWriter(file);
-            for (Task task : taskArr) {
-                writer.write(task.saveAsString() + System.lineSeparator());
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Error: failed to save your tasks! " + e.getMessage());
-        }
-    }
 }

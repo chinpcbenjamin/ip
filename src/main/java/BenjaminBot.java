@@ -7,10 +7,12 @@ import java.util.Scanner;
 public class BenjaminBot {
     private final Ui ui;
     private TaskList taskArr;
+    private Storage storage;
 
-    public BenjaminBot(Ui ui, TaskList taskArr) {
+    public BenjaminBot(Ui ui, TaskList taskArr, Storage storage) {
         this.ui = ui;
         this.taskArr = taskArr;
+        this.storage = storage;
     }
 
     public enum TaskActionType {
@@ -18,44 +20,11 @@ public class BenjaminBot {
         REMOVE
     }
 
-    public static void loadSavedTasks(String s, TaskList arr) {
-        String[] stringArray = s.split(",");
-        switch (stringArray[0]) {
-        case "T":
-            arr.addTask(new Todo(stringArray[2], stringArray[1].equals("1")));
-            break;
-        case "D":
-            arr.addTask(new Deadline(stringArray[2], stringArray[1].equals("1"), LocalDateTime.parse(stringArray[3])));
-            break;
-        case "E":
-            arr.addTask(new Event(stringArray[2], stringArray[1].equals("1"), LocalDateTime.parse(stringArray[3]), LocalDateTime.parse(stringArray[4])));
-        }
-    }
-
     public static void main(String[] args) {
-        BenjaminBot benjaminBot = new BenjaminBot(new Ui(), new TaskList());
+        BenjaminBot benjaminBot = new BenjaminBot(new Ui(), new TaskList(), new Storage("./data/benjamin.txt"));
         benjaminBot.ui.welcomeMessage();
 
-        File savedTasks = new File("./data/benjamin.txt");
-        if (!savedTasks.exists()) {
-            try {
-                new File("./data/").mkdirs();
-                savedTasks.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Sorry, error getting file storage ! " + e.getMessage());
-                return;
-            }
-        }
-
-        try {
-            Scanner reader = new Scanner(savedTasks);
-            while (reader.hasNext()) {
-                loadSavedTasks(reader.nextLine(), benjaminBot.taskArr);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Sorry, issue reading file " + e.getMessage());
-            return;
-        }
+        benjaminBot.storage.load(benjaminBot.taskArr);
 
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
@@ -89,7 +58,7 @@ public class BenjaminBot {
             benjaminBot.ui.printDivider();
         }
 
-        benjaminBot.taskArr.writeToStorage(savedTasks);
+        benjaminBot.storage.writeToStorage(benjaminBot.taskArr);
 
         System.out.println("Bye. Hope to see you again soon!");
         benjaminBot.ui.printDivider();
