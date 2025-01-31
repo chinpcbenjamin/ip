@@ -122,4 +122,19 @@ public class Ui {
             System.out.println("Remember, that the integer should not exceed the number of items you have listed");
         }
     }
+
+    public void handleList(TaskList arr) {
+        System.out.println("Here are the tasks in your list:");
+        for (int i = 0; i < arr.getTaskCount(); i++) {
+            System.out.println(i + 1 + ". " + arr.getTask(i));
+        }
+    }
+
+    public void byeMessage() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
+    public void invalidCommandMessage() {
+        System.out.println("Hey! I do not understand that. Please try something else!");
+    }
 }
