@@ -50,4 +50,19 @@ public class TaskList {
     public int getTaskCount() {
         return taskArr.size();
     }
+
+    /**
+     * Checks whether the tasks stored by this task list contains the keyword.
+     * @param s Keyword to be searched for
+     * @return Task ArrayList containing all the tasks that contain the keyword.
+     */
+    public ArrayList<Task> findTasksContainingKeyword(String s) {
+        ArrayList<Task> list = new ArrayList<>();
+        for (Task t : this.taskArr) {
+            if (t.containsKeyword(s)) {
+                list.add(t);
+            }
+        }
+        return list;
+    }
 }
