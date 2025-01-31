@@ -28,8 +28,8 @@ public class BenjaminBot {
      * An enum representing the two types of actions that a task can have.
      */
     public enum TaskActionType {
-        ADD,
-        REMOVE
+        TASK_ACTION_TYPE_ADD,
+        TASK_ACTION_TYPE_REMOVE
     }
 
     /**
@@ -48,7 +48,11 @@ public class BenjaminBot {
      * @param args Unused in this implementation.
      */
     public static void main(String[] args) {
-        BenjaminBot benjaminBot = new BenjaminBot(new Ui(), new TaskList(), new Storage("./data/benjamin.txt"));
+        BenjaminBot benjaminBot = new BenjaminBot(
+                new Ui(),
+                new TaskList(),
+                new Storage("./data/benjamin.txt"));
+
         benjaminBot.ui.welcomeMessage();
 
         benjaminBot.storage.load(benjaminBot.taskArr);
@@ -59,7 +63,12 @@ public class BenjaminBot {
         benjaminBot.ui.printDivider();
 
         while (!s.isEmpty()) {
-            parser.parse(s, benjaminBot.ui, benjaminBot.taskArr, benjaminBot);
+            parser.parse(
+                    s,
+                    benjaminBot.ui,
+                    benjaminBot.taskArr,
+                    benjaminBot);
+
             benjaminBot.ui.printDivider();
             s = sc.nextLine();
             benjaminBot.ui.printDivider();

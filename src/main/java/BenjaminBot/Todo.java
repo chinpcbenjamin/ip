@@ -31,6 +31,9 @@ public class Todo extends Task {
 
     @Override
     public String saveAsString() {
-        return String.format("T,%d,%s", super.getIsDone() ? 1 : 0, super.getTask());
+        return String.format(
+                "T,%d,%s",
+                super.getIsDone() ? 1 : 0,
+                super.getTask());
     }
 }

@@ -32,10 +32,10 @@ public class Ui {
      */
     public void taskPrint(Task t, int size, BenjaminBot.TaskActionType act) {
         switch (act) {
-        case ADD:
+        case TASK_ACTION_TYPE_ADD:
             System.out.println("Got it. I've added this task:");
             break;
-        case REMOVE:
+        case TASK_ACTION_TYPE_REMOVE:
             System.out.println("Noted. I've removed this task:");
             break;
         }
@@ -96,7 +96,7 @@ public class Ui {
         try {
             Task t = new Todo(s.substring(5));
             arr.addTask(t);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.ADD);
+            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! You need to specify a todo! The correct format is: todo 'description'");
             System.out.println("For example, 'todo read book' enters a new todo called 'read book'");
@@ -111,9 +111,11 @@ public class Ui {
     public void handleDeadline(String s, TaskList arr) {
         try {
             int slashIndex = s.indexOf("/by");
-            Task t = new Deadline(s.substring(9, slashIndex - 1), LocalDateTime.parse(s.substring(slashIndex + 4)));
+            Task t = new Deadline(
+                    s.substring(9, slashIndex - 1),
+                    LocalDateTime.parse(s.substring(slashIndex + 4)));
             arr.addTask(t);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.ADD);
+            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! Your formatting of your 'deadline' is wrong! You do not have a '/by'!");
             System.out.println("The correct format is: deadline 'description' /by 'YYYY-MM-DDTHH:MM:SS");
@@ -133,19 +135,22 @@ public class Ui {
         try {
             int slashIndex = s.indexOf("/from");
             int slashIndexTwo = s.indexOf("/to", slashIndex + 1);
-            Task t = new Event(s.substring(6, slashIndex - 1),
+            Task t = new Event(
+                    s.substring(6, slashIndex - 1),
                     LocalDateTime.parse(s.substring(slashIndex + 6, slashIndexTwo - 1)),
                     LocalDateTime.parse(s.substring(slashIndexTwo + 4)));
             arr.addTask(t);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.ADD);
+            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! Your formatting of your 'event' is wrong!");
             System.out.println("You need both a '/from' and a '/to'");
-            System.out.println("The correct format is: event 'description' /from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
+            System.out.println("The correct format is: event 'description' "
+                    + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
         } catch (DateTimeParseException e) {
             System.out.println("ERROR! Your time is not formatted correctly!");
             System.out.println("The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'");
-            System.out.println("The correct format is: event 'description' /from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
+            System.out.println("The correct format is: event 'description' "
+                    + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
         }
     }
 
@@ -158,7 +163,7 @@ public class Ui {
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
             Task t = arr.removeTask(count);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.REMOVE);
+            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_REMOVE);
         } catch (NumberFormatException e) {
             System.out.println("ERROR! Your formatting of 'delete' is wrong! The correct format is: delete 'integer'");
             System.out.println("For example, 'delete 5' removes the 5th item in the list.");
