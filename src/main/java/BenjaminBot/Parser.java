@@ -18,7 +18,9 @@ public class Parser {
             ui.handleEvent(s, taskArr);
         } else if (s.startsWith("delete")) {
             ui.handleDelete(s, taskArr);
-        } else {
+        } else if (s.startsWith("find")) {
+            ui.handleFind(s, taskArr);
+        }else {
             ui.invalidCommandMessage();
         }
     }

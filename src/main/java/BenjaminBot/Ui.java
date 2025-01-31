@@ -139,4 +139,8 @@ public class Ui {
     public void invalidCommandMessage() {
         System.out.println("Hey! I do not understand that. Please try something else!");
     }
+
+    public void handleFind(String s, TaskList arr) {
+
+    }
 }
