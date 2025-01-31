@@ -3,11 +3,20 @@ package BenjaminBot;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents the interface through which a human user will receive responses from.
+ */
 public class Ui {
+    /**
+     * Prints a dotted line that represents a divider between responses.
+     */
     public void printDivider() {
         System.out.println("___________________________________________________________________");
     }
 
+    /**
+     * Prints the welcome message that a user will see upon starting the bot.
+     */
     public void welcomeMessage() {
         printDivider();
         System.out.println("Hello! I'm BenjaminBot");
@@ -15,6 +24,12 @@ public class Ui {
         printDivider();
     }
 
+    /**
+     * Prints the task that the user has currently added or deleted, as a confirmation message.
+     * @param t Task that the user is adding or deleting.
+     * @param size Integer representing the current number of tasks that the BenjaminBot is saving.
+     * @param act The variable specifying whether the user is adding or deleting a task.
+     */
     public void taskPrint(Task t, int size, BenjaminBot.TaskActionType act) {
         switch (act) {
         case ADD:
@@ -28,6 +43,11 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.");
     }
 
+    /**
+     * Tells the TaskList instance to mark a task as done, and prints out a confirmation.
+     * @param s String representing the command that specifies the index to mark.
+     * @param arr The TaskList instance that contains the task.
+     */
     public void handleMark(String s, TaskList arr) {
         try {
             int count = Integer.parseInt(s.substring(5)) - 1;
@@ -45,6 +65,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Tells the TaskList instance to mark a task as not done, and prints out a confirmation.
+     * @param s String representing the command that specifies the index to unmark.
+     * @param arr The TaskList instance that contains the task.
+     */
     public void handleUnmark(String s, TaskList arr) {
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
@@ -62,6 +87,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Tells the TaskList instance add this new todo, and prints out a confirmation.
+     * @param s String representing the command containing the todo.
+     * @param arr The TaskList instance that contains the task.
+     */
     public void handleTodo(String s, TaskList arr) {
         try {
             Task t = new Todo(s.substring(5));
@@ -73,6 +103,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Tells the TaskList instance add this new deadline, and prints out a confirmation.
+     * @param s String representing the command containing the deadline.
+     * @param arr The TaskList instance that contains the task.
+     */
     public void handleDeadline(String s, TaskList arr) {
         try {
             int slashIndex = s.indexOf("/by");
@@ -89,6 +124,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Tells the TaskList instance add this new event, and prints out a confirmation.
+     * @param s String representing the command containing the event.
+     * @param arr The TaskList instance that contains the task.
+     */
     public void handleEvent(String s, TaskList arr) {
         try {
             int slashIndex = s.indexOf("/from");
@@ -109,6 +149,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Tells the TaskList instance add this delete the task, and prints out a confirmation.
+     * @param s String representing that specifies the index to delete.
+     * @param arr The TaskList instance that contains the task.
+     */
     public void handleDelete(String s, TaskList arr) {
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
@@ -125,6 +170,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints out the current tasks stored by the TaskList.
+     * @param arr The TaskList containing the tasks to be printed out.
+     */
     public void handleList(TaskList arr) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < arr.getTaskCount(); i++) {
@@ -132,10 +181,16 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the message that users will see when the bot is closing.
+     */
     public void byeMessage() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Prints the message that users will see when they have entered an invalid command.
+     */
     public void invalidCommandMessage() {
         System.out.println("Hey! I do not understand that. Please try something else!");
     }
