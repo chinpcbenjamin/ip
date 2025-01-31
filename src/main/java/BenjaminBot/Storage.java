@@ -37,13 +37,22 @@ public class Storage {
         String[] stringArray = s.split(",");
         switch (stringArray[0]) {
         case "T":
-            arr.addTask(new Todo(stringArray[2], stringArray[1].equals("1")));
+            arr.addTask(new Todo(
+                    stringArray[2],
+                    stringArray[1].equals("1")));
             break;
         case "D":
-            arr.addTask(new Deadline(stringArray[2], stringArray[1].equals("1"), LocalDateTime.parse(stringArray[3])));
+            arr.addTask(new Deadline(
+                    stringArray[2],
+                    stringArray[1].equals("1"),
+                    LocalDateTime.parse(stringArray[3])));
             break;
         case "E":
-            arr.addTask(new Event(stringArray[2], stringArray[1].equals("1"), LocalDateTime.parse(stringArray[3]), LocalDateTime.parse(stringArray[4])));
+            arr.addTask(new Event(stringArray[2],
+                    stringArray[1].equals("1"),
+                    LocalDateTime.parse(stringArray[3]),
+                    LocalDateTime.parse(stringArray[4])));
+            break;
         }
     }
 

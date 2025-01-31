@@ -76,7 +76,9 @@ public class Ui {
     public void handleDeadline(String s, TaskList arr) {
         try {
             int slashIndex = s.indexOf("/by");
-            Task t = new Deadline(s.substring(9, slashIndex - 1), LocalDateTime.parse(s.substring(slashIndex + 4)));
+            Task t = new Deadline(
+                    s.substring(9, slashIndex - 1),
+                    LocalDateTime.parse(s.substring(slashIndex + 4)));
             arr.addTask(t);
             taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
         } catch (IndexOutOfBoundsException e) {
@@ -93,7 +95,8 @@ public class Ui {
         try {
             int slashIndex = s.indexOf("/from");
             int slashIndexTwo = s.indexOf("/to", slashIndex + 1);
-            Task t = new Event(s.substring(6, slashIndex - 1),
+            Task t = new Event(
+                    s.substring(6, slashIndex - 1),
                     LocalDateTime.parse(s.substring(slashIndex + 6, slashIndexTwo - 1)),
                     LocalDateTime.parse(s.substring(slashIndexTwo + 4)));
             arr.addTask(t);
@@ -101,11 +104,13 @@ public class Ui {
         } catch (IndexOutOfBoundsException e) {
             System.out.println("ERROR! Your formatting of your 'event' is wrong!");
             System.out.println("You need both a '/from' and a '/to'");
-            System.out.println("The correct format is: event 'description' /from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
+            System.out.println("The correct format is: event 'description' "
+                    + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
         } catch (DateTimeParseException e) {
             System.out.println("ERROR! Your time is not formatted correctly!");
             System.out.println("The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'");
-            System.out.println("The correct format is: event 'description' /from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
+            System.out.println("The correct format is: event 'description' "
+                    + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
         }
     }
 
