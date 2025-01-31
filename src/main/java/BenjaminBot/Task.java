@@ -1,3 +1,5 @@
+package BenjaminBot;
+
 public abstract class Task {
     private final String task;
     private boolean isDone;
