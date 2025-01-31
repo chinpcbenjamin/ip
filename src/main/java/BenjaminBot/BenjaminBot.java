@@ -13,7 +13,7 @@ public class BenjaminBot {
     private Storage storage;
 
     /**
-     * Constructor for a BenjaminBot instance, given instances of Ui, TaskList and Storage.
+     * Constructs a BenjaminBot instance, given instances of Ui, TaskList and Storage.
      * @param ui The user interface for the program to interact with the user.
      * @param taskArr The list of tasks currently being stored.
      * @param storage The storage object for loading and saving tasks.
@@ -33,7 +33,7 @@ public class BenjaminBot {
     }
 
     /**
-     * Causes the application to save the tasks in the current TaskList into a file that is specified by the Storage.
+     * Saves the tasks in the current TaskList into a file that is specified by the Storage.
      * Then, exits the application.
      */
     public void exit() {
@@ -44,7 +44,7 @@ public class BenjaminBot {
     }
 
     /**
-     * Main method that serves as the entry point to the application.
+     * Serves as the entry point to the application.
      * @param args Unused in this implementation.
      */
     public static void main(String[] args) {
