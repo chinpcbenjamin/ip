@@ -11,27 +11,27 @@ public class Parser {
      * @param taskArr The TaskList instance that contains the current tasks of the BenjaminBot instance.
      * @param benjaminBot The current instance of BenjaminBot that uses this parser.
      */
-    public void parse(String s, Ui ui, TaskList taskArr, BenjaminBot benjaminBot) {
+    public String parse(String s, Ui ui, TaskList taskArr, BenjaminBot benjaminBot) {
         if (s.equals("list")) {
-            ui.handleList(taskArr);
+            return ui.handleList(taskArr);
         } else if (s.equals("bye")) {
-            benjaminBot.exit();
+            return benjaminBot.exit();
         } else if (s.startsWith("mark")) {
-            ui.handleMark(s, taskArr);
+            return ui.handleMark(s, taskArr);
         } else if (s.startsWith("unmark")) {
-            ui.handleUnmark(s, taskArr);
+            return ui.handleUnmark(s, taskArr);
         } else if (s.startsWith("todo")) {
-            ui.handleTodo(s, taskArr);
+            return ui.handleTodo(s, taskArr);
         } else if (s.startsWith("deadline")) {
-            ui.handleDeadline(s, taskArr);
+            return ui.handleDeadline(s, taskArr);
         } else if (s.startsWith("event")) {
-            ui.handleEvent(s, taskArr);
+            return ui.handleEvent(s, taskArr);
         } else if (s.startsWith("delete")) {
-            ui.handleDelete(s, taskArr);
+            return ui.handleDelete(s, taskArr);
         } else if (s.startsWith("find")) {
-            ui.handleFind(s, taskArr);
+            return ui.handleFind(s, taskArr);
         } else {
-            ui.invalidCommandMessage();
+            return ui.invalidCommandMessage();
         }
     }
 }

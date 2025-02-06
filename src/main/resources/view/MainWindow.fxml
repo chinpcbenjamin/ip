@@ -17,13 +17,15 @@
                    layoutY="540"
                    layoutX="10"
                    prefHeight="50"
-                   prefWidth="400"/>
+                   prefWidth="400"
+                   onAction="#handleUserInput"/>
         <Button fx:id="enterButton"
                 layoutY="540"
                 layoutX="420"
                 prefHeight="50"
                 prefWidth="80"
-                text="Enter"/>
+                text="Enter"
+                onAction="#handleUserInput"/>
         <ScrollPane fx:id="scrollPane"
                     hbarPolicy="NEVER"
                     hvalue="1.0"

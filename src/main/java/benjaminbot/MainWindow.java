@@ -30,6 +30,31 @@ public class MainWindow extends AnchorPane{
 
     public void setBenjaminBot(BenjaminBot b) {
         this.benjaminBot = b;
+        start();
+    }
+
+    public void start() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getBenjaminBotDialog(benjaminBot.getWelcomeMessage(), "BenjaminBot")
+        );
+    }
+
+    /**
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * the dialog container. Clears the user input after processing.
+     */
+    @FXML
+    private void handleUserInput() {
+        String input = userInputField.getText();
+        String response = benjaminBot.getResponse(input);
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, "You"),
+                DialogBox.getBenjaminBotDialog(response, "BenjaminBot")
+        );
+        userInputField.clear();
+        if (input.equals("bye")) {
+            System.exit(0);
+        }
     }
 
 }
