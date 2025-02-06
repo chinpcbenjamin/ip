@@ -1,4 +1,4 @@
-package BenjaminBot;
+package benjaminbot;
 
 import java.util.ArrayList;
 

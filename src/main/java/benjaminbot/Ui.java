@@ -1,4 +1,4 @@
-package BenjaminBot;
+package benjaminbot;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -38,6 +38,8 @@ public class Ui {
             break;
         case TASK_ACTION_TYPE_REMOVE:
             System.out.println("Noted. I've removed this task:");
+            break;
+        default:
             break;
         }
         System.out.println("  " + t);
