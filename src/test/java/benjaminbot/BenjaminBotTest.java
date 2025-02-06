@@ -1,18 +1,13 @@
-package seedu.BenjaminBot;
-
-import BenjaminBot.Deadline;
-import BenjaminBot.Event;
-import BenjaminBot.TaskList;
-import BenjaminBot.Todo;
-import org.junit.jupiter.api.Test;
+package benjaminbot;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class BenjaminBotTest {
     @Test
-    public void TaskListTest() {
+    public void taskListTest() {
         // tests TaskList's getTaskCount(), addTask(Task t), and removeTask(int i);
         TaskList testArr = new TaskList();
         assertEquals(0, testArr.getTaskCount());

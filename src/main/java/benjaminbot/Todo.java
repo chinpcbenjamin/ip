@@ -1,4 +1,4 @@
-package BenjaminBot;
+package benjaminbot;
 
 /**
  * Represents a task that needs to be done. It has no start or end time associated with it.

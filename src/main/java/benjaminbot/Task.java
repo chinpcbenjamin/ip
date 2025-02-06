@@ -1,4 +1,4 @@
-package BenjaminBot;
+package benjaminbot;
 
 /**
  * Represents activities that the user needs to do.

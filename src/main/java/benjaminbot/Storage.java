@@ -1,4 +1,4 @@
-package BenjaminBot;
+package benjaminbot;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -72,6 +72,8 @@ public class Storage {
                     stringArray[1].equals("1"),
                     LocalDateTime.parse(stringArray[3]),
                     LocalDateTime.parse(stringArray[4])));
+            break;
+        default:
             break;
         }
     }

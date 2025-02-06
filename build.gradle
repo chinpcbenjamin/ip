@@ -43,5 +43,5 @@ run{
 
 checkstyle {
     toolVersion = '10.2'
-    configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
+    configFile = file("/Users/benjamin/Desktop/cs2103t/individual_project/ip/config/checkstyle/checkstyle.xml")
 }

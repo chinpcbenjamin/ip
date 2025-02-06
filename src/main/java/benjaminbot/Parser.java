@@ -1,4 +1,4 @@
-package BenjaminBot;
+package benjaminbot;
 
 /**
  * Represents the object that helps to decode the commands from user inputs
@@ -30,7 +30,7 @@ public class Parser {
             ui.handleDelete(s, taskArr);
         } else if (s.startsWith("find")) {
             ui.handleFind(s, taskArr);
-        }else {
+        } else {
             ui.invalidCommandMessage();
         }
     }
