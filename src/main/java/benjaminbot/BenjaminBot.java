@@ -11,6 +11,7 @@ public class BenjaminBot {
     private final Ui ui;
     private TaskList taskArr;
     private Storage storage;
+    private Parser parser;
 
     /**
      * Constructs a BenjaminBot instance, given instances of Ui, TaskList and Storage.
@@ -22,6 +23,8 @@ public class BenjaminBot {
         this.ui = ui;
         this.taskArr = taskArr;
         this.storage = storage;
+        this.storage.load(taskArr);
+        this.parser = new Parser();
     }
 
     /**
@@ -36,11 +39,21 @@ public class BenjaminBot {
      * Saves the tasks in the current TaskList into a file that is specified by the Storage.
      * Then, exits the application.
      */
-    public void exit() {
+    public String exit() {
         this.storage.writeToStorage(this.taskArr);
-        this.ui.byeMessage();
-        this.ui.printDivider();
-        System.exit(0);
+        return this.ui.byeMessage();
+    }
+
+    public String getWelcomeMessage() {
+        return this.ui.welcomeMessage();
+    }
+
+    public String getResponse(String s) {
+        return parser.parse(
+                s,
+                this.ui,
+                this.taskArr,
+                this);
     }
 
     /**
@@ -48,30 +61,6 @@ public class BenjaminBot {
      * @param args Unused in this implementation.
      */
     public static void main(String[] args) {
-        BenjaminBot benjaminBot = new BenjaminBot(
-                new Ui(),
-                new TaskList(),
-                new Storage("./data/benjamin.txt"));
 
-        benjaminBot.ui.welcomeMessage();
-
-        benjaminBot.storage.load(benjaminBot.taskArr);
-
-        Parser parser = new Parser();
-        Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        benjaminBot.ui.printDivider();
-
-        while (!s.isEmpty()) {
-            parser.parse(
-                    s,
-                    benjaminBot.ui,
-                    benjaminBot.taskArr,
-                    benjaminBot);
-
-            benjaminBot.ui.printDivider();
-            s = sc.nextLine();
-            benjaminBot.ui.printDivider();
-        }
     }
 }

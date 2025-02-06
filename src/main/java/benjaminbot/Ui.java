@@ -9,20 +9,11 @@ import java.util.ArrayList;
  */
 public class Ui {
     /**
-     * Prints a dotted line that represents a divider between responses.
+     * Returns the welcome message that a user will see upon starting the bot.
+     * @return Welcome message that a user will see upon starting the bot.
      */
-    public void printDivider() {
-        System.out.println("___________________________________________________________________");
-    }
-
-    /**
-     * Prints the welcome message that a user will see upon starting the bot.
-     */
-    public void welcomeMessage() {
-        printDivider();
-        System.out.println("Hello! I'm BenjaminBot");
-        System.out.println("What can I do for you?");
-        printDivider();
+    public String welcomeMessage() {
+        return "Hello! I am BenjaminBot! What can I do for you today?";
     }
 
     /**
@@ -31,19 +22,22 @@ public class Ui {
      * @param size Integer representing the current number of tasks that the BenjaminBot is saving.
      * @param act The variable specifying whether the user is adding or deleting a task.
      */
-    public void taskPrint(Task t, int size, BenjaminBot.TaskActionType act) {
+    public String taskPrint(Task t, int size, BenjaminBot.TaskActionType act) {
+        String returnString = "";
         switch (act) {
         case TASK_ACTION_TYPE_ADD:
-            System.out.println("Got it. I've added this task:");
+            returnString += "Got it. I've added this task:\n";
             break;
         case TASK_ACTION_TYPE_REMOVE:
-            System.out.println("Noted. I've removed this task:");
+            returnString += "Noted. I've removed this task:\n";
             break;
         default:
             break;
         }
-        System.out.println("  " + t);
-        System.out.println("Now you have " + size + " tasks in the list.");
+        returnString += "  " + t + "\n";
+        returnString += "Now you have " + size + " tasks in the list.";
+
+        return returnString;
     }
 
     /**
@@ -51,20 +45,21 @@ public class Ui {
      * @param s String representing the command that specifies the index to mark.
      * @param arr The TaskList instance that contains the task.
      */
-    public void handleMark(String s, TaskList arr) {
+    public String handleMark(String s, TaskList arr) {
         try {
             int count = Integer.parseInt(s.substring(5)) - 1;
             arr.markTask(count);
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println("  " + arr.getTask(count));
+            return "Nice! I've marked this task as done:\n  "
+                    + arr.getTask(count);
+
         } catch (NumberFormatException e) {
-            System.out.println("ERROR! Your formatting of 'mark' is wrong! The correct format is: mark 'integer'");
-            System.out.println("For example, 'mark 5' sets the 5th item in the list to be done.");
-            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
+            return "ERROR! Your formatting of 'mark' is wrong! The correct format is: mark 'integer'\n"
+                    + "For example, 'mark 5' sets the 5th item in the list to be done.\n"
+                    + "Remember, that the integer should not exceed the number of items you have listed";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("ERROR! You do not have that many items in your list!");
-            System.out.println("Your formatting of 'mark' is right, but please enter a valid integer");
-            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
+            return "ERROR! You do not have that many items in your list!\n"
+                    + "Your formatting of 'mark' is right, but please enter a valid integer\n"
+                    + "Remember, that the integer should not exceed the number of items you have listed";
         }
     }
 
@@ -73,20 +68,20 @@ public class Ui {
      * @param s String representing the command that specifies the index to unmark.
      * @param arr The TaskList instance that contains the task.
      */
-    public void handleUnmark(String s, TaskList arr) {
+    public String handleUnmark(String s, TaskList arr) {
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
             arr.unmarkTask(count);
-            System.out.println("Ok, I've marked this task as not done yet:");
-            System.out.println("  " + arr.getTask(count));
+            return "Ok, I've marked this task as not done yet:\n  "
+                    + arr.getTask(count);
         } catch (NumberFormatException e) {
-            System.out.println("ERROR! Your formatting of 'unmark' is wrong! The correct format is: unmark 'integer'");
-            System.out.println("For example, 'unmark 5' sets the 5th item in the list to be not done.");
-            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
+            return "ERROR! Your formatting of 'unmark' is wrong! The correct format is: unmark 'integer'\n"
+                    + "For example, 'unmark 5' sets the 5th item in the list to be not done.\n"
+                    + "Remember, that the integer should not exceed the number of items you have listed";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("ERROR! You do not have that many items in your list!");
-            System.out.println("Your formatting of 'unmark' is right, but please enter a valid integer");
-            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
+            return "ERROR! You do not have that many items in your list!\n"
+                    + "Your formatting of 'unmark' is right, but please enter a valid integer\n"
+                    + "Remember, that the integer should not exceed the number of items you have listed";
         }
     }
 
@@ -95,14 +90,14 @@ public class Ui {
      * @param s String representing the command containing the todo.
      * @param arr The TaskList instance that contains the task.
      */
-    public void handleTodo(String s, TaskList arr) {
+    public String handleTodo(String s, TaskList arr) {
         try {
             Task t = new Todo(s.substring(5));
             arr.addTask(t);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
+            return taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("ERROR! You need to specify a todo! The correct format is: todo 'description'");
-            System.out.println("For example, 'todo read book' enters a new todo called 'read book'");
+            return "ERROR! You need to specify a todo! The correct format is: todo 'description'\n"
+                + "For example, 'todo read book' enters a new todo called 'read book'";
         }
     }
 
@@ -111,21 +106,21 @@ public class Ui {
      * @param s String representing the command containing the deadline.
      * @param arr The TaskList instance that contains the task.
      */
-    public void handleDeadline(String s, TaskList arr) {
+    public String handleDeadline(String s, TaskList arr) {
         try {
             int slashIndex = s.indexOf("/by");
             Task t = new Deadline(
                     s.substring(9, slashIndex - 1),
                     LocalDateTime.parse(s.substring(slashIndex + 4)));
             arr.addTask(t);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
+            return taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("ERROR! Your formatting of your 'deadline' is wrong! You do not have a '/by'!");
-            System.out.println("The correct format is: deadline 'description' /by 'YYYY-MM-DDTHH:MM:SS");
+            return "ERROR! Your formatting of your 'deadline' is wrong! You do not have a '/by'!\n"
+                + "The correct format is: deadline 'description' /by 'YYYY-MM-DDTHH:MM:SS";
         } catch (DateTimeParseException e) {
-            System.out.println("ERROR! Your time is not formatted correctly!");
-            System.out.println("The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'");
-            System.out.println("The correct format is: deadline 'description' /by 'YYYY-MM-DDTHH:MM:SS'");
+            return "ERROR! Your time is not formatted correctly!\n"
+                + "The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'\n"
+                + "The correct format is: deadline 'description' /by 'YYYY-MM-DDTHH:MM:SS'";
         }
     }
 
@@ -134,7 +129,7 @@ public class Ui {
      * @param s String representing the command containing the event.
      * @param arr The TaskList instance that contains the task.
      */
-    public void handleEvent(String s, TaskList arr) {
+    public String handleEvent(String s, TaskList arr) {
         try {
             int slashIndex = s.indexOf("/from");
             int slashIndexTwo = s.indexOf("/to", slashIndex + 1);
@@ -143,17 +138,17 @@ public class Ui {
                     LocalDateTime.parse(s.substring(slashIndex + 6, slashIndexTwo - 1)),
                     LocalDateTime.parse(s.substring(slashIndexTwo + 4)));
             arr.addTask(t);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
+            return taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_ADD);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("ERROR! Your formatting of your 'event' is wrong!");
-            System.out.println("You need both a '/from' and a '/to'");
-            System.out.println("The correct format is: event 'description' "
-                    + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
+            return "ERROR! Your formatting of your 'event' is wrong!\n"
+                + "You need both a '/from' and a '/to'\n"
+                + "The correct format is: event 'description' "
+                + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'";
         } catch (DateTimeParseException e) {
-            System.out.println("ERROR! Your time is not formatted correctly!");
-            System.out.println("The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'");
-            System.out.println("The correct format is: event 'description' "
-                    + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'");
+            return "ERROR! Your time is not formatted correctly!\n"
+                + "The correct format for a time is: 'YYYY-MM-DDTHH:MM:SS'"
+                + "The correct format is: event 'description' "
+                + "/from YYYY-MM-DDTHH:MM:SS /to YYYY-MM-DDTHH:MM:SS'";
         }
     }
 
@@ -162,19 +157,19 @@ public class Ui {
      * @param s String representing that specifies the index to delete.
      * @param arr The TaskList instance that contains the task.
      */
-    public void handleDelete(String s, TaskList arr) {
+    public String handleDelete(String s, TaskList arr) {
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
             Task t = arr.removeTask(count);
-            taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_REMOVE);
+            return taskPrint(t, arr.getTaskCount(), BenjaminBot.TaskActionType.TASK_ACTION_TYPE_REMOVE);
         } catch (NumberFormatException e) {
-            System.out.println("ERROR! Your formatting of 'delete' is wrong! The correct format is: delete 'integer'");
-            System.out.println("For example, 'delete 5' removes the 5th item in the list.");
-            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
+            return "ERROR! Your formatting of 'delete' is wrong! The correct format is: delete 'integer'\n"
+                + "For example, 'delete 5' removes the 5th item in the list.\n"
+                + "Remember, that the integer should not exceed the number of items you have listed";
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("ERROR! You do not have that many items in your list!");
-            System.out.println("Your formatting of 'delete' is right, but please enter a valid integer");
-            System.out.println("Remember, that the integer should not exceed the number of items you have listed");
+            return "ERROR! You do not have that many items in your list!\n"
+                + "Your formatting of 'delete' is right, but please enter a valid integer\n"
+                + "Remember, that the integer should not exceed the number of items you have listed";
         }
     }
 
@@ -182,25 +177,27 @@ public class Ui {
      * Prints out the current tasks stored by the TaskList.
      * @param arr The TaskList containing the tasks to be printed out.
      */
-    public void handleList(TaskList arr) {
-        System.out.println("Here are the tasks in your list:");
+    public String handleList(TaskList arr) {
+        StringBuilder tasks = new StringBuilder();
+        tasks.append("Here are the tasks in your list:\n");
         for (int i = 0; i < arr.getTaskCount(); i++) {
-            System.out.println(i + 1 + ". " + arr.getTask(i));
+            tasks.append(i + 1).append(". ").append(arr.getTask(i)).append("\n");
         }
+        return tasks.toString();
     }
 
     /**
      * Prints the message that users will see when the bot is closing.
      */
-    public void byeMessage() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String byeMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
      * Prints the message that users will see when they have entered an invalid command.
      */
-    public void invalidCommandMessage() {
-        System.out.println("Hey! I do not understand that. Please try something else!");
+    public String invalidCommandMessage() {
+        return "Hey! I do not understand that. Please try something else!";
     }
 
     /**
@@ -208,15 +205,17 @@ public class Ui {
      * @param s String containing the keyword to be searched for.
      * @param arr TaskList containing the tasks.
      */
-    public void handleFind(String s, TaskList arr) {
+    public String handleFind(String s, TaskList arr) {
         ArrayList<Task> list = arr.findTasksContainingKeyword(s.substring(5));
         if (list.isEmpty()) {
-            System.out.println("Sorry! I couldn't find any task containing that keyword");
+            return "Sorry! I couldn't find any task containing that keyword";
         } else {
-            System.out.println("Here ate the matching tasks in your list:");
+            String returnString = "Here are the matching tasks in your list:\n";
             for (int i = 0; i < list.size(); i++) {
-                System.out.println(i + 1 + ". " + list.get(i));
+                returnString += (i + 1) + ". " + list.get(i) + "\n";
             }
+            return returnString;
+
         }
     }
 }
