@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="benjaminbot.MainWindow"
+            prefHeight="600.0" prefWidth="510.0">
+    <children>
+        <TextField fx:id="userInputField"
+                   layoutY="540"
+                   layoutX="10"
+                   prefHeight="50"
+                   prefWidth="400"/>
+        <Button fx:id="enterButton"
+                layoutY="540"
+                layoutX="420"
+                prefHeight="50"
+                prefWidth="80"
+                text="Enter"/>
+        <ScrollPane fx:id="scrollPane"
+                    hbarPolicy="NEVER"
+                    hvalue="1.0"
+                    layoutY="10"
+                    layoutX="10"
+                    prefHeight="510"
+                    prefWidth="490">
+            <content>
+                <VBox fx:id="dialogContainer"
+                      prefHeight="500"
+                      prefWidth="470"/>
+            </content>
+        </ScrollPane>
+    </children>
+
+</AnchorPane>
