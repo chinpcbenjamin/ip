@@ -13,6 +13,7 @@ public class TaskList {
      * @param t Task to be added
      */
     public void addTask(Task t) {
+        assert t != null : "Task should not be null";
         taskArr.add(t);
     }
 
