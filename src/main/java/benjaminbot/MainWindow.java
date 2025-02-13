@@ -20,9 +20,6 @@ public class MainWindow extends AnchorPane{
 
     private BenjaminBot benjaminBot;
 
-    private final Label botLabel = new Label("BenjaminBot");
-    private final Label userLabel = new Label("You");
-
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

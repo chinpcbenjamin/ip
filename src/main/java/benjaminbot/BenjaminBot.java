@@ -55,12 +55,4 @@ public class BenjaminBot {
                 this.taskArr,
                 this);
     }
-
-    /**
-     * Serves as the entry point to the application.
-     * @param args Unused in this implementation.
-     */
-    public static void main(String[] args) {
-
-    }
 }
