@@ -49,6 +49,7 @@ public class Ui {
      * @param arr The TaskList instance that contains the task.
      */
     public String handleMark(String s, TaskList arr) {
+        assert s.startsWith("mark") : "String command should start with mark for a mark command";
         try {
             int count = Integer.parseInt(s.substring(5)) - 1;
             arr.markTask(count);
@@ -73,6 +74,7 @@ public class Ui {
      * @param arr The TaskList instance that contains the task.
      */
     public String handleUnmark(String s, TaskList arr) {
+        assert s.startsWith("unmark") : "String command should start with unmark for a unmark command";
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
             arr.unmarkTask(count);
@@ -96,6 +98,7 @@ public class Ui {
      * @param arr The TaskList instance that contains the task.
      */
     public String handleTodo(String s, TaskList arr) {
+        assert s.startsWith("todo") : "String command should start with todo for a todo command";
         try {
             Task t = new Todo(s.substring(5));
             arr.addTask(t);
@@ -113,6 +116,7 @@ public class Ui {
      * @param arr The TaskList instance that contains the task.
      */
     public String handleDeadline(String s, TaskList arr) {
+        assert s.startsWith("deadline") : "String command should start with deadline for a deadline command";
         try {
             int slashIndex = s.indexOf("/by");
             Task t = new Deadline(
@@ -137,6 +141,7 @@ public class Ui {
      * @param arr The TaskList instance that contains the task.
      */
     public String handleEvent(String s, TaskList arr) {
+        assert s.startsWith("event") : "String command should start with event for an event command";
         try {
             int slashIndex = s.indexOf("/from");
             int slashIndexTwo = s.indexOf("/to", slashIndex + 1);
@@ -166,6 +171,7 @@ public class Ui {
      * @param arr The TaskList instance that contains the task.
      */
     public String handleDelete(String s, TaskList arr) {
+        assert s.startsWith("delete") : "String command should start with delete for a delete command";
         try {
             int count = Integer.parseInt(s.substring(7)) - 1;
             Task t = arr.removeTask(count);

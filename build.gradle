@@ -40,12 +40,13 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "BenjaminBot"
+    archiveBaseName = "benjaminbot"
     archiveClassifier = null
 }
 
 run {
     standardInput = System.in
+    enableAssertions = true
 }
 
 checkstyle {
