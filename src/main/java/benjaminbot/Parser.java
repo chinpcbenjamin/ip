@@ -31,6 +31,8 @@ public class Parser {
             return ui.handleDelete(s, taskArr);
         } else if (s.startsWith("find")) {
             return ui.handleFind(s, taskArr);
+        } else if (s.startsWith("view")) {
+            return ui.handleView(s, taskArr);
         } else {
             return ui.invalidCommandMessage();
         }

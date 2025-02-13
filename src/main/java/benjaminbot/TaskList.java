@@ -1,5 +1,6 @@
 package benjaminbot;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -66,6 +67,16 @@ public class TaskList {
         ArrayList<Task> list = new ArrayList<>();
         for (Task t : this.taskArr) {
             if (t.containsKeyword(s)) {
+                list.add(t);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Task> findTasksOnDate(LocalDateTime date) {
+        ArrayList<Task> list = new ArrayList<>();
+        for (Task t : this.taskArr) {
+            if (t.isSameDate(date)) {
                 list.add(t);
             }
         }

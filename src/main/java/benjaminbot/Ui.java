@@ -1,6 +1,7 @@
 package benjaminbot;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
@@ -232,6 +233,19 @@ public class Ui {
             }
             return returnString;
 
+        }
+    }
+
+    public String handleView(String s, TaskList arr) {
+        assert s.startsWith("view") : "String command should start with view for a view command";
+        try {
+            String dateString = s.substring(5);
+            LocalDateTime targetDate = LocalDateTime.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
+        } catch (DateTimeParseException e) {
+            return "ERROR! Your time is not formatted correctly!\n"
+                    + "The correct format for a time is: 'YYYY-MM-DD'"
+                    + "The correct format is: event 'description' "
+                    + "/from YYYY-MM-DD /to YYYY-MM-DD'";
         }
     }
 }
