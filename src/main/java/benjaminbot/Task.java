@@ -1,5 +1,7 @@
 package benjaminbot;
 
+import java.time.LocalDate;
+
 /**
  * Represents activities that the user needs to do.
  */
@@ -71,4 +73,6 @@ public abstract class Task {
                 ? " [X] "
                 : " [ ] ";
     }
+
+    public abstract boolean isSameDate(LocalDate date);
 }

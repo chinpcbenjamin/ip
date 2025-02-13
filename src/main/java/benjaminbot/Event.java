@@ -1,5 +1,6 @@
 package benjaminbot;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -61,5 +62,17 @@ public class Event extends Task {
                 super.getTask(),
                 this.startTime,
                 this.endTime);
+    }
+
+    @Override
+    public boolean isSameDate(LocalDate date) {
+        boolean startsToday = this.startTime.getYear() == date.getYear()
+                && this.startTime.getMonth() == date.getMonth()
+                && this.startTime.getDayOfMonth() == date.getDayOfMonth();
+
+        boolean endsToday = this.endTime.getYear() == date.getYear()
+                && this.endTime.getMonth() == date.getMonth()
+                && this.endTime.getDayOfMonth() == date.getDayOfMonth();
+        return startsToday || endsToday;
     }
 }

@@ -1,5 +1,6 @@
 package benjaminbot;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -52,5 +53,12 @@ public class Deadline extends Task {
                 super.getIsDone() ? 1 : 0,
                 super.getTask(),
                 this.endTime);
+    }
+
+    @Override
+    public boolean isSameDate(LocalDate date) {
+        return this.endTime.getYear() == date.getYear()
+                && this.endTime.getMonth() == date.getMonth()
+                && this.endTime.getDayOfMonth() == date.getDayOfMonth();
     }
 }

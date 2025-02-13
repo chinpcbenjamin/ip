@@ -1,6 +1,8 @@
 package benjaminbot;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
@@ -232,6 +234,30 @@ public class Ui {
             }
             return returnString;
 
+        }
+    }
+
+    public String handleView(String s, TaskList arr) {
+        assert s.startsWith("view") : "String command should start with view for a view command";
+        try {
+            String dateString = s.substring(5);
+            LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
+            ArrayList<Task> matches =
+                    arr.findTasksOnDate(date);
+
+            StringBuilder returnString = new StringBuilder();
+            returnString.append("Here is the schedule for: ").append(date).append("\n");
+            for (int i = 0; i < matches.size(); i++) {
+                returnString.append(i + 1).append(". ").append(arr.getTask(i)).append("\n");
+            }
+            return returnString.toString();
+        } catch (IndexOutOfBoundsException e) {
+            return "ERROR! Your formatting of your 'view' is wrong!\n"
+                    + "The correct format is: view 'YYYY-MM-DD'";
+        }catch (DateTimeParseException e) {
+            return "ERROR! Your time is not formatted correctly!\n"
+                    + "The correct format for a time is: 'YYYY-MM-DD'\n"
+                    + "The correct format is: view 'YYYY-MM-DD'\n" + s.substring(5);
         }
     }
 }
