@@ -6,6 +6,7 @@ package benjaminbot;
 public class Parser {
     /**
      * Decodes a string user input, the calls the relevant functions that are meant to handle such user commands.
+     *
      * @param s The command input by the user.
      * @param ui The Ui instance that this parse will pass comments on to.
      * @param taskArr The TaskList instance that contains the current tasks of the BenjaminBot instance.

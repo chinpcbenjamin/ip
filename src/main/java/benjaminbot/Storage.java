@@ -16,6 +16,7 @@ public class Storage {
     /**
      * Loads the file that contains the saved lists of tasks, specified by the pathname. If the file
      * at the specified pathname does not exist, then a new empty file is created.
+     *
      * @param pathname The pathname to which the lists of tasks is saved at.
      */
     public Storage(String pathname) {
@@ -33,6 +34,7 @@ public class Storage {
     /**
      * Loads the list of saved tasks from the file specified by this Storage instance, and adds the saved tasks
      * to the TaskList instance used by a BenjaminBot instance.
+     *
      * @param taskArr The TaskList instance to which the saved tasks will be loaded to.
      */
     public void load(TaskList taskArr) {

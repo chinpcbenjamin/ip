@@ -9,6 +9,7 @@ public abstract class Task {
 
     /**
      * Constructs a Task specified by a string, and a boolean indicating the completion status.
+     *
      * @param s The description of the task.
      * @param b A boolean describing whether the task has been completed or not.
      */
@@ -19,6 +20,7 @@ public abstract class Task {
 
     /**
      * Constructs a Task specified by a string. This task is not completed yet.
+     *
      * @param s The description of the task.
      */
     public Task(String s) {
@@ -44,6 +46,7 @@ public abstract class Task {
 
     /**
      * Returns a boolean indicating whether this task's description contains the keyword being searched for.
+     *
      * @param s The keyword to search for.
      * @return A boolean indicating whether this task's description contains the keyword being searched for.
      */
@@ -53,14 +56,19 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return this.isDone
-                ? "[X] " + this.task
-                : "[ ] " + this.task;
+        return this.getCheckboxString() + this.task;
     }
 
     /**
      * Formats the task for saving the task into the storage document.
+     *
      * @return A string that is in the correct format for storage.
      */
     public abstract String saveAsString();
+
+    public String getCheckboxString() {
+        return this.isDone
+                ? " [X] "
+                : " [ ] ";
+    }
 }

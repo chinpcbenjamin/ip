@@ -15,6 +15,7 @@ public class Event extends Task {
     /**
      * Constructs a Deadline instance specified by the string description, a boolean indicating current status,
      * and start and end times.
+     *
      * @param task A description of the task.
      * @param isDone A boolean describing whether the task has been completed or not.
      * @param startTime The time at which this task starts.
@@ -29,6 +30,7 @@ public class Event extends Task {
     /**
      * Constructs a Deadline instance specified by the string description, and start and end times. This task is
      * not yet completed.
+     *
      * @param task A description of the task.
      * @param startTime The time at which this task starts.
      * @param endTime The time at which this task ends.
@@ -41,14 +43,14 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.getIsDone()
-                ? "[E] [X] " + super.getTask()
-                    + " (from: " + this.startTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
-                    + " to: " + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")"
-
-                : "[E] [ ] " + super.getTask()
-                    + " (from: " + this.startTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
-                    + " to: " + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")";
+        return "[E]"
+                + super.getCheckboxString()
+                + super.getTask()
+                + " (from: "
+                + this.startTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
+                + " to: "
+                + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
+                + ")";
     }
 
     @Override
