@@ -15,6 +15,7 @@ public class BenjaminBot {
 
     /**
      * Constructs a BenjaminBot instance, given instances of Ui, TaskList and Storage.
+     *
      * @param ui The user interface for the program to interact with the user.
      * @param taskArr The list of tasks currently being stored.
      * @param storage The storage object for loading and saving tasks.

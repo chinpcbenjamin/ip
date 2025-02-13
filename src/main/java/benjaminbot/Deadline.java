@@ -14,6 +14,7 @@ public class Deadline extends Task {
     /**
      * Constructs a Deadline instance specified by the string description, a boolean indicating current status,
      * and an end time.
+     *
      * @param task A description of the task.
      * @param isDone A boolean describing whether the task has been completed or not.
      * @param endTime The deadline by which this task must be completed by.
@@ -25,6 +26,7 @@ public class Deadline extends Task {
 
     /**
      * Constructs a Deadline instance specified by the task, and an end time. This task is not yet completed.
+     *
      * @param task A description of the task.
      * @param endTime The deadline by which this task must be completed by.
      */

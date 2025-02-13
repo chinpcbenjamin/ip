@@ -7,6 +7,7 @@ public class Todo extends Task {
 
     /**
      * Constructs a todo instance specified by the string description and a boolean indicating current status
+     *
      * @param task A description of the task.
      * @param isDone A boolean describing whether the task has been completed or not.
      */
@@ -16,6 +17,7 @@ public class Todo extends Task {
 
     /**
      *  Constructs a todo instance specified by the string description. This task is not completed yet.
+     *
      * @param task A description of the task.
      */
     public Todo(String task) {

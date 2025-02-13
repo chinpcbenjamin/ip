@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Ui {
     /**
      * Returns the welcome message that a user will see upon starting the bot.
+     *
      * @return Welcome message that a user will see upon starting the bot.
      */
     public String welcomeMessage() {
@@ -18,6 +19,7 @@ public class Ui {
 
     /**
      * Prints the task that the user has currently added or deleted, as a confirmation message.
+     *
      * @param t Task that the user is adding or deleting.
      * @param size Integer representing the current number of tasks that the BenjaminBot is saving.
      * @param act The variable specifying whether the user is adding or deleting a task.
@@ -42,6 +44,7 @@ public class Ui {
 
     /**
      * Tells the TaskList instance to mark a task as done, and prints out a confirmation.
+     *
      * @param s String representing the command that specifies the index to mark.
      * @param arr The TaskList instance that contains the task.
      */
@@ -65,6 +68,7 @@ public class Ui {
 
     /**
      * Tells the TaskList instance to mark a task as not done, and prints out a confirmation.
+     *
      * @param s String representing the command that specifies the index to unmark.
      * @param arr The TaskList instance that contains the task.
      */
@@ -87,6 +91,7 @@ public class Ui {
 
     /**
      * Tells the TaskList instance add this new todo, and prints out a confirmation.
+     *
      * @param s String representing the command containing the todo.
      * @param arr The TaskList instance that contains the task.
      */
@@ -103,6 +108,7 @@ public class Ui {
 
     /**
      * Tells the TaskList instance add this new deadline, and prints out a confirmation.
+     *
      * @param s String representing the command containing the deadline.
      * @param arr The TaskList instance that contains the task.
      */
@@ -126,6 +132,7 @@ public class Ui {
 
     /**
      * Tells the TaskList instance add this new event, and prints out a confirmation.
+     *
      * @param s String representing the command containing the event.
      * @param arr The TaskList instance that contains the task.
      */
@@ -154,6 +161,7 @@ public class Ui {
 
     /**
      * Tells the TaskList instance add this delete the task, and prints out a confirmation.
+     *
      * @param s String representing that specifies the index to delete.
      * @param arr The TaskList instance that contains the task.
      */
@@ -175,6 +183,7 @@ public class Ui {
 
     /**
      * Prints out the current tasks stored by the TaskList.
+     *
      * @param arr The TaskList containing the tasks to be printed out.
      */
     public String handleList(TaskList arr) {
@@ -202,6 +211,7 @@ public class Ui {
 
     /**
      * Prints out all tasks that contain the string keyword.
+     *
      * @param s String containing the keyword to be searched for.
      * @param arr TaskList containing the tasks.
      */

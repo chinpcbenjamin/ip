@@ -10,6 +10,7 @@ public class TaskList {
 
     /**
      * Adds a new task to this task list.
+     *
      * @param t Task to be added
      */
     public void addTask(Task t) {
@@ -18,6 +19,7 @@ public class TaskList {
 
     /**
      * Removes the task at the specified index from the list.
+     *
      * @param i Index of the task to be removed.
      * @return The task that is removed.
      */
@@ -31,6 +33,7 @@ public class TaskList {
 
     /**
      * Sets the status of the task at the specified index of the list to be 'done'.
+     *
      * @param i Index of the task to set the status to 'done'.
      */
     public void markTask(int i) {
@@ -40,6 +43,7 @@ public class TaskList {
 
     /**
      * Sets the status of the task at the specified index of the list to be 'not done'.
+     *
      * @param i Index of the task to set the status to 'not done'.
      */
     public void unmarkTask(int i) {
@@ -53,6 +57,7 @@ public class TaskList {
 
     /**
      * Checks whether the tasks stored by this task list contains the keyword.
+     *
      * @param s Keyword to be searched for
      * @return Task ArrayList containing all the tasks that contain the keyword.
      */
