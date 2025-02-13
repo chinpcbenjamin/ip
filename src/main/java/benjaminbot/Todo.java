@@ -1,6 +1,6 @@
 package benjaminbot;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * Represents a task that needs to be done. It has no start or end time associated with it.
@@ -40,7 +40,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public boolean isSameDate(LocalDateTime date) {
+    public boolean isSameDate(LocalDate date) {
         return false;
     }
 }

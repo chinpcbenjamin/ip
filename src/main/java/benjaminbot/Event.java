@@ -1,5 +1,6 @@
 package benjaminbot;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -64,7 +65,7 @@ public class Event extends Task {
     }
 
     @Override
-    public boolean isSameDate(LocalDateTime date) {
+    public boolean isSameDate(LocalDate date) {
         boolean startsToday = this.startTime.getYear() == date.getYear()
                 && this.startTime.getMonth() == date.getMonth()
                 && this.startTime.getDayOfMonth() == date.getDayOfMonth();
