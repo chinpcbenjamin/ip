@@ -62,4 +62,16 @@ public class Event extends Task {
                 this.startTime,
                 this.endTime);
     }
+
+    @Override
+    public boolean isSameDate(LocalDateTime date) {
+        boolean startsToday = this.startTime.getYear() == date.getYear()
+                && this.startTime.getMonth() == date.getMonth()
+                && this.startTime.getDayOfMonth() == date.getDayOfMonth();
+
+        boolean endsToday = this.endTime.getYear() == date.getYear()
+                && this.endTime.getMonth() == date.getMonth()
+                && this.endTime.getDayOfMonth() == date.getDayOfMonth();
+        return startsToday || endsToday;
+    }
 }

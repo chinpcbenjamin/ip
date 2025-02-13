@@ -53,4 +53,11 @@ public class Deadline extends Task {
                 super.getTask(),
                 this.endTime);
     }
+
+    @Override
+    public boolean isSameDate(LocalDateTime date) {
+        return this.endTime.getYear() == date.getYear()
+                && this.endTime.getMonth() == date.getMonth()
+                && this.endTime.getDayOfMonth() == date.getDayOfMonth();
+    }
 }

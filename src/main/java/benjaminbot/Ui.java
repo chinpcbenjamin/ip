@@ -240,7 +240,9 @@ public class Ui {
         assert s.startsWith("view") : "String command should start with view for a view command";
         try {
             String dateString = s.substring(5);
-            LocalDateTime targetDate = LocalDateTime.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
+            ArrayList<Task> matches =
+                    arr.findTasksOnDate(LocalDateTime.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE));
+
         } catch (DateTimeParseException e) {
             return "ERROR! Your time is not formatted correctly!\n"
                     + "The correct format for a time is: 'YYYY-MM-DD'"
