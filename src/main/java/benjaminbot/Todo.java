@@ -26,9 +26,7 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        return super.getIsDone()
-                ? "[T] [X] " + super.getTask()
-                : "[T] [ ] " + super.getTask();
+        return "[T]" + super.getCheckboxString() + super.getTask();
     }
 
     @Override

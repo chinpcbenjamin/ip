@@ -37,12 +37,12 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return super.getIsDone()
-                ? "[D] [X] " + super.getTask() + " (by: "
-                    + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")"
-
-                : "[D] [ ] " + super.getTask() + " (by: "
-                    + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")";
+        return "[D]"
+                + super.getCheckboxString()
+                + super.getTask()
+                + " (by: "
+                + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
+                + ")";
     }
 
     @Override

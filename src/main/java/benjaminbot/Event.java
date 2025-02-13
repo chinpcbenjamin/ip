@@ -43,14 +43,14 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.getIsDone()
-                ? "[E] [X] " + super.getTask()
-                    + " (from: " + this.startTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
-                    + " to: " + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")"
-
-                : "[E] [ ] " + super.getTask()
-                    + " (from: " + this.startTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
-                    + " to: " + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss")) + ")";
+        return "[E]"
+                + super.getCheckboxString()
+                + super.getTask()
+                + " (from: "
+                + this.startTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
+                + " to: "
+                + this.endTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss"))
+                + ")";
     }
 
     @Override

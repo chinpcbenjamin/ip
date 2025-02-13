@@ -56,9 +56,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return this.isDone
-                ? "[X] " + this.task
-                : "[ ] " + this.task;
+        return this.getCheckboxString() + this.task;
     }
 
     /**
@@ -67,4 +65,10 @@ public abstract class Task {
      * @return A string that is in the correct format for storage.
      */
     public abstract String saveAsString();
+
+    public String getCheckboxString() {
+        return this.isDone
+                ? " [X] "
+                : " [ ] ";
+    }
 }
