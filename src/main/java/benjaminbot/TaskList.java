@@ -73,6 +73,12 @@ public class TaskList {
         return list;
     }
 
+    /**
+     * Finds all tasks that have startTime's or endTime's that match the specified date.
+     *
+     * @param date The date to check a task's startTime or endTime against
+     * @return An array of Tasks that represent all the tasks that match the specified date.
+     */
     public ArrayList<Task> findTasksOnDate(LocalDate date) {
         ArrayList<Task> list = new ArrayList<>();
         for (Task t : this.taskArr) {

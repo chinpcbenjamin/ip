@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane{
         start();
     }
 
-    public void start() {
+    private void start() {
         dialogContainer.getChildren().addAll(
                 DialogBox.getBenjaminBotDialog(benjaminBot.getWelcomeMessage(), botImage)
         );

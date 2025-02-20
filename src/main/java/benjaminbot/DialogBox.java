@@ -48,10 +48,24 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Create a DialogBox that display's the user's input.
+     *
+     * @param text The dialog text to display.
+     * @param image The image that represents the user.
+     * @return DialogBox that display's the user's input.
+     */
     public static DialogBox getUserDialog(String text, Image image) {
         return new DialogBox(text, image);
     }
 
+    /**
+     * Create a DialogBox that display's the BenjaminBot's input.
+     *
+     * @param text The dialog text to display.
+     * @param image The image that represents the BenjaminBot.
+     * @return DialogBox that display's BenjaminBot's input.
+     */
     public static DialogBox getBenjaminBotDialog(String text, Image image) {
         var db = new DialogBox(text, image);
         db.flip();

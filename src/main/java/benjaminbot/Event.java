@@ -64,6 +64,12 @@ public class Event extends Task {
                 this.endTime);
     }
 
+    /**
+     * Checks if the startTime or the endTime of this Event is the same as specified date.
+     *
+     * @param date The date to check against.
+     * @return Whether at least one of the startTime or endTime of this Event is the same as the specified date.
+     */
     @Override
     public boolean isSameDate(LocalDate date) {
         boolean startsToday = this.startTime.getYear() == date.getYear()

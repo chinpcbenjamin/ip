@@ -237,6 +237,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints out all tasks that happen on the date.
+     *
+     * @param s String containing the date to check for.
+     * @param arr TaskList containing the tasks.
+     */
     public String handleView(String s, TaskList arr) {
         assert s.startsWith("view") : "String command should start with view for a view command";
         try {

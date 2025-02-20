@@ -55,6 +55,12 @@ public class Deadline extends Task {
                 this.endTime);
     }
 
+    /**
+     * Checks if the endTime of this Deadline is the same as specified date.
+     *
+     * @param date The date to check against.
+     * @return Whether the endTime of this Deadline is the same as the specified date.
+     */
     @Override
     public boolean isSameDate(LocalDate date) {
         return this.endTime.getYear() == date.getYear()
