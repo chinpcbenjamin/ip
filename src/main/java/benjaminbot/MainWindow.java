@@ -2,13 +2,16 @@ package benjaminbot;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
 
 public class MainWindow extends AnchorPane{
+    private Image botImage = new Image(this.getClass().getResourceAsStream("/images/bot_haris.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user_haris.png"));
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -32,7 +35,7 @@ public class MainWindow extends AnchorPane{
 
     public void start() {
         dialogContainer.getChildren().addAll(
-                DialogBox.getBenjaminBotDialog(benjaminBot.getWelcomeMessage(), "BenjaminBot")
+                DialogBox.getBenjaminBotDialog(benjaminBot.getWelcomeMessage(), botImage)
         );
     }
 
@@ -45,8 +48,8 @@ public class MainWindow extends AnchorPane{
         String input = userInputField.getText();
         String response = benjaminBot.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, "You"),
-                DialogBox.getBenjaminBotDialog(response, "BenjaminBot")
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getBenjaminBotDialog(response, botImage)
         );
         userInputField.clear();
         if (input.equals("bye")) {

@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
@@ -19,9 +21,9 @@ public class DialogBox extends HBox {
     @FXML
     private Label dialog;
     @FXML
-    private Label displayName;
+    private ImageView image;
 
-    private DialogBox(String text, String name) {
+    private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -32,7 +34,8 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        displayName.setText(name);
+        image.setImage(img);
+
     }
 
     /**
@@ -45,12 +48,12 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(String text, String name) {
-        return new DialogBox(text, name);
+    public static DialogBox getUserDialog(String text, Image image) {
+        return new DialogBox(text, image);
     }
 
-    public static DialogBox getBenjaminBotDialog(String text, String name) {
-        var db = new DialogBox(text, name);
+    public static DialogBox getBenjaminBotDialog(String text, Image image) {
+        var db = new DialogBox(text, image);
         db.flip();
         return db;
     }

@@ -1,4 +1,0 @@
-D,0,cs2103t individual project,2025-01-31T16:00
-E,1,CS2103T Lecture,2025-01-31T16:00,2025-01-31T18:00
-E,0,shopping,2025-01-31T12:00,2025-01-31T13:30
-T,0,eat lunch
