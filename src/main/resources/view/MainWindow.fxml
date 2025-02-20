@@ -1,42 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="benjaminbot.MainWindow"
-            prefHeight="600.0" prefWidth="510.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="benjaminbot.MainWindow">
     <children>
-        <TextField fx:id="userInputField"
-                   layoutY="540"
-                   layoutX="10"
-                   prefHeight="50"
-                   prefWidth="400"
-                   onAction="#handleUserInput"/>
-        <Button fx:id="enterButton"
-                layoutY="540"
-                layoutX="420"
-                prefHeight="50"
-                prefWidth="80"
-                text="Enter"
-                onAction="#handleUserInput"/>
-        <ScrollPane fx:id="scrollPane"
-                    hbarPolicy="NEVER"
-                    hvalue="1.0"
-                    layoutY="10"
-                    layoutX="10"
-                    prefHeight="510"
-                    prefWidth="490">
+        <TextField fx:id="userInputField" layoutX="10" layoutY="540" onAction="#handleUserInput" prefHeight="50" prefWidth="400" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="80.0" />
+        <Button fx:id="enterButton" layoutX="420" layoutY="540" onAction="#handleUserInput" prefHeight="50" prefWidth="80" text="Enter" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" />
+        <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" layoutX="10" layoutY="10" prefHeight="510" prefWidth="490" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
-                <VBox fx:id="dialogContainer"
-                      prefHeight="500"
-                      prefWidth="470"/>
+                <VBox fx:id="dialogContainer" prefHeight="500" prefWidth="470" />
             </content>
         </ScrollPane>
     </children>

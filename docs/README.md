@@ -2,6 +2,8 @@
 
 Welcome to BenjaminBot, a bot designed to help you keep track of your tasks.
 
+![Screenshot of BenjaminBot](https://chinpcbenjamin.github.io/ip/Ui.png)
+
 ## User Guide
 >[!IMPORTANT]
 > For the commands below, any *italicised* words are meant to be replaced by you!
