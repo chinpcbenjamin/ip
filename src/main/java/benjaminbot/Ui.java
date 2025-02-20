@@ -195,6 +195,10 @@ public class Ui {
      * @param arr The TaskList containing the tasks to be printed out.
      */
     public String handleList(TaskList arr) {
+        if (arr.getTaskCount() == 0) {
+            return "You have not added any tasks! Try adding a task first!";
+        }
+
         StringBuilder tasks = new StringBuilder();
         tasks.append("Here are the tasks in your list:\n");
         for (int i = 0; i < arr.getTaskCount(); i++) {
@@ -248,8 +252,11 @@ public class Ui {
         try {
             String dateString = s.substring(5);
             LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
-            ArrayList<Task> matches =
-                    arr.findTasksOnDate(date);
+            ArrayList<Task> matches = arr.findTasksOnDate(date);
+
+            if (matches.isEmpty()) {
+                return "Your schedule for " + date + " is empty. Add something to it!";
+            }
 
             StringBuilder returnString = new StringBuilder();
             returnString.append("Here is the schedule for: ").append(date).append("\n");
