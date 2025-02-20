@@ -74,5 +74,12 @@ public abstract class Task {
                 : " [ ] ";
     }
 
+    /**
+     * Checks whether the task has any dates that match against the specified date. If the task does not
+     * keep track of the date, then always return false.
+     *
+     * @param date The date to check against
+     * @return Whether the task has any dates that match against the specified date.
+     */
     public abstract boolean isSameDate(LocalDate date);
 }
